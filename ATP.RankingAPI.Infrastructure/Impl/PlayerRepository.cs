@@ -6,7 +6,7 @@ namespace ATP.RankingAPI.Infrastructure.Impl
 {
     internal class PlayerRepository : IPlayerRepository
     {
-        string connectionString = "Server=localhost;Port=5261;Database=tennisplayer;User ID=Root;Password=;";
+        string connectionString = "Server=localhost;Port=3306;Database=tennisplayer;User ID=root;Password=;";
 
         public TennisPlayer? Get(int id)
         {
@@ -45,7 +45,7 @@ namespace ATP.RankingAPI.Infrastructure.Impl
 
             connection.Open();
 
-            string query = "SELECT id, name, ranking_score FROM tennisplayer";
+            string query = "SELECT id, name, ranking_score FROM player";
 
             using var command = new MySqlCommand(query, connection);
 
@@ -72,7 +72,7 @@ namespace ATP.RankingAPI.Infrastructure.Impl
     
             connection.Open();
     
-            string query = "INSERT INTO tennisplayer (name, ranking_score) VALUES (@Name, @RankingScore)";
+            string query = "INSERT INTO player (name, ranking_score) VALUES (@Name, @RankingScore)";
     
             using var command = new MySqlCommand(query, connection);
     
@@ -106,7 +106,7 @@ namespace ATP.RankingAPI.Infrastructure.Impl
     
             connection.Open();
     
-            string query = "DELETE FROM tennisplayer WHERE id = @Id";
+            string query = "DELETE FROM player WHERE id = @Id";
     
             using var command = new MySqlCommand(query, connection);
     
