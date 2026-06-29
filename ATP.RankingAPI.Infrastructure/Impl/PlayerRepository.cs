@@ -72,10 +72,12 @@ namespace ATP.RankingAPI.Infrastructure.Impl
     
             connection.Open();
     
-            string query = "INSERT INTO player (name, ranking_score) VALUES (@Name, @RankingScore)";
+            string query = "INSERT INTO player (id, name, ranking_score) VALUES (@Id, @Name, @RankingScore)";
     
             using var command = new MySqlCommand(query, connection);
-    
+
+            command.Parameters.AddWithValue("@Id", player.Id);
+
             command.Parameters.AddWithValue("@Name", player.Name);
 
             command.Parameters.AddWithValue("@RankingScore", player.RankingScore);
@@ -89,7 +91,7 @@ namespace ATP.RankingAPI.Infrastructure.Impl
     
             connection.Open();
     
-            string query = "UPDATE tennisplayer SET name = @Name, ranking_score = @RankingScore WHERE id = @Id";
+            string query = "UPDATE player SET name = @Name, ranking_score = @RankingScore WHERE id = @Id";
     
             using var command = new MySqlCommand(query, connection);
     
